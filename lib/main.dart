@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
             _index = index;
           });
         },
-        height: 50,
+        height: 55,
         backgroundColor: Colors.pinkAccent[100],
         activeColor: Colors.pinkAccent[100],
         color: Colors.white,

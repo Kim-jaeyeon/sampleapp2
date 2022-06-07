@@ -34,6 +34,9 @@ class _searchState extends State<search> {
     return Scaffold(
         body: Column(
           children: <Widget>[
+            SizedBox(
+              height: 40,
+            ),
             Form(
               key: _formKey,
               child: Padding(
