@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'package:sampleapp2/category.dart';
 import 'package:sampleapp2/cameraPage.dart';
@@ -18,12 +19,19 @@ final dummyItems = [
 ];
 
 void main() {
+
+  WidgetsBinding widgetsBinding=WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  void dispose(){
+    FlutterNativeSplash.remove();
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -52,9 +60,6 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-
-
-
 
 
   @override
@@ -92,6 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
             _index=index;
           });
         },
+
         height: 55,
         backgroundColor: Colors.purple[100],
         activeColor: Colors.purple[100],
