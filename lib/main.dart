@@ -31,10 +31,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme:
-        GoogleFonts.notoSansNKoTextTheme(Theme.of(context).textTheme),
-        primarySwatch: Colors.pink,
+            GoogleFonts.notoSansNKoTextTheme(Theme.of(context).textTheme),
+        primarySwatch: Colors.purple,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'appSample2'),
     );
   }
 }
@@ -53,16 +53,29 @@ class MyHomePage extends StatefulWidget {
 
   final String title;
 
+
+
+
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var _index = 0;
-  var _bottomPage = [category(), search(), cameraPage(), mainPage(), myPage()];
+  var _index = 3;
+  final _bottomPage = [
+    category(),
+    search(),
+    cameraPage(),
+    mainPage(),
+    myPage(),
+  ];
+
 
   @override
   Widget build(BuildContext context) {
+
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //as
@@ -72,20 +85,21 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: _bottomPage[_index],
       bottomNavigationBar: ConvexAppBar(
+        initialActiveIndex: 3,
         style: TabStyle.reactCircle,
         onTap: (index) {
           setState(() {
-            _index = index;
+            _index=index;
           });
         },
         height: 55,
-        backgroundColor: Colors.pinkAccent[100],
-        activeColor: Colors.pinkAccent[100],
+        backgroundColor: Colors.purple[100],
+        activeColor: Colors.purple[100],
         color: Colors.white,
         items: [
           TabItem(
               activeIcon: Icon(
-                CupertinoIcons.list_bullet,
+                CupertinoIcons.list_bullet_indent,
                 color: Colors.white,
                 size: 30,
               ),
@@ -97,9 +111,9 @@ class _MyHomePageState extends State<MyHomePage> {
               title: '카테고리'),
           TabItem(
               activeIcon: Icon(
-                CupertinoIcons.search,
+                CupertinoIcons.search_circle_fill,
                 color: Colors.white,
-                size: 30,
+                size: 40,
               ),
               icon: Icon(
                 CupertinoIcons.search,
@@ -109,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: '검색'),
           TabItem(
               activeIcon: Icon(
-                CupertinoIcons.bag,
+                CupertinoIcons.bag_fill,
                 color: Colors.white,
                 size: 30,
               ),
@@ -121,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: '카메라'),
           TabItem(
               activeIcon: Icon(
-                CupertinoIcons.home,
+                CupertinoIcons.house_fill,
                 color: Colors.white,
                 size: 30,
               ),
@@ -133,9 +147,9 @@ class _MyHomePageState extends State<MyHomePage> {
               title: '홈'),
           TabItem(
               activeIcon: Icon(
-                CupertinoIcons.profile_circled,
+                CupertinoIcons.person_alt_circle,
                 color: Colors.white,
-                size: 30,
+                size: 40,
               ),
               icon: Icon(
                 CupertinoIcons.profile_circled,
@@ -197,7 +211,8 @@ class _mainPageState extends State<mainPage> {
   @override
   Widget MainMiddle() {
     return CarouselSlider(
-      options: CarouselOptions(height: 400.0, autoPlay: true), //높이 400
+      options: CarouselOptions(
+          height: 400.0, autoPlay: true, enlargeCenterPage: true), //높이 400
       items: dummyItems.map((url) {
         //5페이지
         return Builder(
@@ -208,7 +223,7 @@ class _mainPageState extends State<mainPage> {
                     .width, //context를 사용하고자 할 때, 기기의 가로 길이
                 margin: EdgeInsets.symmetric(horizontal: 5.0), //좌우여백 5
                 decoration: const BoxDecoration(color: Colors.white //배경색
-                ),
+                    ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.asset(
@@ -230,7 +245,7 @@ class _mainPageState extends State<mainPage> {
           height: 30,
         ),
         AnimatedContainer(
-          duration: Duration(milliseconds: 300),
+          duration: Duration(milliseconds: 1000),
           child: Column(
             children: <Widget>[
               Text(

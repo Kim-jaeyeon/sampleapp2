@@ -22,12 +22,12 @@ class category extends StatelessWidget {
         Container(
             decoration: BoxDecoration(
               boxShadow: [BoxShadow(
-                  color: Colors.pinkAccent,
+                  color: Colors.purple,
                   blurRadius: 20.0,
                   spreadRadius: 2.0,
-                  offset: Offset(0,5)
+                  offset: Offset(0,3)
               )],
-              color: Colors.pinkAccent[100],
+              color: Colors.purple[100],
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(120)),
             ),
             width: 500,
@@ -50,80 +50,65 @@ class category extends StatelessWidget {
   Widget categoryMiddle() {
     return Column(
       children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            InkWell(
-              onTap: () {},
-              child: Column(
-                children: <Widget>[
-                  Icon(CupertinoIcons.hand_thumbsup_fill,size:45,color: Colors.lightBlue[200],),
-                  Text('베스트 상품',style: TextStyle(fontSize:15),),
-                ],
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Column(
-                children: <Widget>[
-                  Icon(CupertinoIcons.tickets,size:50,color: Colors.lightBlue[200],),
-                  Text('타임세일',style: TextStyle(fontSize:15),),
-                ],
-              ),
-            ),
-          ],
+        InkWell(
+          onTap: () {},
+          child: Column(
+            children: <Widget>[
+              Icon(CupertinoIcons.hand_thumbsup_fill,size:45,color: Colors.lightBlue[200],),
+              Text('베스트 상품',style: TextStyle(fontSize:15),),
+            ],
+          ),
+        ),
+        InkWell(
+          onTap: () {},
+          child: Column(
+            children: <Widget>[
+              Icon(CupertinoIcons.tickets,size:50,color: Colors.lightBlue[200],),
+              Text('타임세일',style: TextStyle(fontSize:15),),
+            ],
+          ),
         ),
         SizedBox(
           height: 30,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            InkWell(
-              onTap: () {},
-              child: Column(
-                children: <Widget>[
-                  Icon(CupertinoIcons.sun_dust,size:50,color: Colors.lightBlue[200],),
-                  Text('썬크림',style: TextStyle(fontSize:15),),
-                ],
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Column(
-                children: <Widget>[
-                  Icon(CupertinoIcons.eye,size:50,color: Colors.lightBlue[200],),
-                  Text('눈',style: TextStyle(fontSize:15),),
-                ],
-              ),
-            ),
-          ],
+        InkWell(
+          onTap: () {},
+          child: Column(
+            children: <Widget>[
+              Icon(CupertinoIcons.sun_dust,size:50,color: Colors.lightBlue[200],),
+              Text('썬크림',style: TextStyle(fontSize:15),),
+            ],
+          ),
+        ),
+        InkWell(
+          onTap: () {},
+          child: Column(
+            children: <Widget>[
+              Icon(CupertinoIcons.eye,size:50,color: Colors.lightBlue[200],),
+              Text('눈',style: GoogleFonts.sacramento(textStyle: TextStyle(fontSize:15),)),
+            ],
+          ),
         ),
         SizedBox(
           height: 30,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: <Widget>[
-            InkWell(
-              onTap: () {},
-              child: Column(
-                children: <Widget>[
-                  Icon(CupertinoIcons.lab_flask_solid,size:50,color: Colors.lightBlue[200],),
-                  Text('얼굴',style: TextStyle(fontSize:15),),
-                ],
-              ),
-            ),
-            InkWell(
-              onTap: () {},
-              child: Column(
-                children: <Widget>[
-                  Icon(CupertinoIcons.ear,size:50,color: Colors.lightBlue[200],),
-                  Text('악세서리',style: TextStyle(fontSize:15),),
-                ],
-              ),
-            ),
-          ],
+        InkWell(
+          onTap: () {},
+          child: Column(
+            children: <Widget>[
+              Icon(CupertinoIcons.lab_flask_solid,size:50,color: Colors.lightBlue[200],),
+              Text('얼굴',style: TextStyle(fontSize:15),),
+            ],
+          ),
+        ),
+        InkWell(
+          onTap: () {},
+          child: Column(
+            children: <Widget>[
+              Icon(CupertinoIcons.ear,size:50,color: Colors.lightBlue[200],),
+              Text('악세서리',style: TextStyle(fontSize:15),),
+            ],
+          ),
         ),
       ],
     );
