@@ -1,6 +1,15 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sampleapp2/orderedlist.dart';
+import 'package:sampleapp2/personal_info.dart';
+import 'package:sampleapp2/wishlist.dart';
+import 'package:sampleapp2/information/Person.dart';
+import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 import 'package:sampleapp2/main.dart';
 
@@ -13,9 +22,22 @@ class myPage extends StatefulWidget {
 
 class _myPageState extends State<myPage> {
   var _mainpage = MyHomePage(title: 'appSample');
+  final _nameTextController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+
+  var _name = '';
+
+  @override
+  void dispose(){
+    super.dispose();
+    _nameTextController.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: ListView(
         children: [myPageTop(), myPageMiddle()],
@@ -23,59 +45,94 @@ class _myPageState extends State<myPage> {
     );
   }
 
+
+
+
   @override
   Widget myPageTop() {
-    return Container(
-        decoration: BoxDecoration(
-          color: Colors.purple[100],
-        ),
-        width: 500,
-        height: 200,
-        child: Row(
-          children: [
-            Column(
+    Person user=Person('name', 'nickname', 0, 'gender', 'adress');
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('user_info').snapshots(),
+      builder: (context, snapshot) {
+
+        return Container(
+            decoration: BoxDecoration(
+              color: Colors.purple[100],
+            ),
+            width: 500,
+            height: 200,
+            child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 15, top: 30, bottom: 10),
-                  child: Image.asset(
-                    'assets/basic_profile.png',
-                    width: 130,
-                    height: 110,
+                Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, top: 30, bottom: 10),
+                      child: Image.asset(
+                        'assets/basic_profile.png',
+                        width: 130,
+                        height: 110,
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Text(
+                        '    프로필 사진 변경하기',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )
+                  ],
+                ),
+                Container(
+                  height: 100,
+                  width: 200,
+                  child: Form(
+                    key: _formKey,
+                    child: Padding(
+                      padding:
+                          EdgeInsets.only(left: 15, top: 10, right: 10, bottom: 15),
+                      child: TextFormField(
+
+                        decoration: InputDecoration(
+                          hintText: user.getName(),
+                          hintStyle: TextStyle(fontSize: 40, color: Colors.white),
+                        ),
+                        controller: _nameTextController,
+                        validator: (value) {
+                          if (value.toString().trim().isEmpty ||
+                              value.toString().trim().length < 3) {
+                            return '최소 3글자이어야 해요!';
+                          } else {
+                            setState(() {
+                              _name = value.toString();
+                              user.setName(_name);
+                              print(user.getName() + "!!!!");
+                            });
+                            return null;
+                          }
+                        },
+                      ),
+                    ),
                   ),
                 ),
-                InkWell(
-                  onTap: () {},
-                  child: Text(
-                    '    프로필 사진 변경하기',
-                    style: TextStyle(color: Colors.white),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20, top: 10),
+                  child: InkWell(
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        Get.snackbar('닉네임', '변경 완료!',snackPosition: SnackPosition.BOTTOM,backgroundColor: Colors.white,barBlur: 40);
+                      }
+                    },
+                    child: Icon(
+                      CupertinoIcons.pencil,
+                      color: Colors.white,
+                      size: 40,
+                    ),
                   ),
                 )
               ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 30),
-              child: Text(
-                'jaeyeon',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 35,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, top: 10),
-              child: InkWell(
-                onTap: () {},
-                child: Icon(
-                  CupertinoIcons.pencil,
-                  color: Colors.white,
-                  size: 40,
-                ),
-              ),
-            )
-          ],
-        ));
+            ));
+      }
+    );
   }
 
   @override
@@ -84,7 +141,10 @@ class _myPageState extends State<myPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+                context, CupertinoPageRoute(builder: (context) => wishlist()));
+          },
           child: Container(
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(width: 0.5)),
@@ -123,7 +183,10 @@ class _myPageState extends State<myPage> {
               )),
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context,
+                CupertinoPageRoute(builder: (context) => orderedlist()));
+          },
           child: Container(
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(width: 0.5)),
@@ -162,7 +225,10 @@ class _myPageState extends State<myPage> {
               )),
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context,
+                CupertinoPageRoute(builder: (context) => personal_info()));
+          },
           child: Container(
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(width: 0.5)),

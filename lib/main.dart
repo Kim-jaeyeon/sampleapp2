@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
@@ -9,6 +10,9 @@ import 'package:sampleapp2/category.dart';
 import 'package:sampleapp2/cameraPage.dart';
 import 'package:sampleapp2/myPage.dart';
 import 'package:sampleapp2/search.dart';
+import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 final dummyItems = [
   'assets/beready.jpeg',
@@ -18,24 +22,22 @@ final dummyItems = [
   'assets/lipstick2.jpeg',
 ];
 
-void main() {
+void main() async{
 
   WidgetsBinding widgetsBinding=WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  FlutterNativeSplash.remove();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  @override
-  void dispose(){
-    FlutterNativeSplash.remove();
-  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme:
@@ -75,6 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
     mainPage(),
     myPage(),
   ];
+
 
 
   @override
@@ -279,8 +282,17 @@ class _mainPageState extends State<mainPage> {
           color: Colors.lightBlue[200],
         ),
         SizedBox(
-          height: 50,
+          height: 20,
         ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('copyright ',style: TextStyle(fontSize: 10),),
+            Icon(Icons.copyright,size: 15,),
+          ],
+        ),
+        Text('2022 by Kim jaeyeon',style: TextStyle(fontSize: 10),),
+        SizedBox(height: 50,)
       ],
     );
   }
