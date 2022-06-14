@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sampleapp2/item_list.dart';
+import 'package:sampleapp2/almost_deadline_sale_item_list.dart';
+import 'package:sampleapp2/annualbest_item_list.dart';
+import 'package:sampleapp2/dailybest_item_list.dart';
+import 'package:sampleapp2/deadline_sale_item_list.dart';
+import 'package:sampleapp2/essence_item_list.dart';
+import 'package:sampleapp2/halfsale_item_list.dart';
+import 'package:sampleapp2/monthlybest_item_list.dart';
+import 'package:get/get.dart';
+import 'package:sampleapp2/toner_item_list.dart';
 
 
 class category extends StatefulWidget {
@@ -183,7 +192,7 @@ Widget bestItem() {
         children: <Widget>[
           InkWell(
             onTap: (){
-              Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list()));
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>annualbest_item_list()));
             },
             child: Container(
               decoration: BoxDecoration(
@@ -199,7 +208,9 @@ Widget bestItem() {
             ),
           ),
           InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>monthlybest_item_list()));
+            },
             child: Container(
               decoration: BoxDecoration(
                   border: Border(bottom: BorderSide(width: 0.5))),
@@ -214,7 +225,9 @@ Widget bestItem() {
             ),
           ),
           InkWell(
-            onTap: (){},
+            onTap: (){
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>dailbest_item_list()));
+            },
             child: Container(
               decoration: BoxDecoration(
                   border: Border(bottom: BorderSide(width: 0.5))),
@@ -236,107 +249,125 @@ Widget bestItem() {
 
 @override
 Widget timeSale() {
-  return ListView(
-    children: <Widget>[
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('행사 종료 임박 상품'),
-              SizedBox(width: 154,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
+  return Builder(
+    builder: (context) {
+      return ListView(
+        children: <Widget>[
+          InkWell(
+            onTap: (){
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>almost_deadline_sale_item_list()));
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(width: 0.5))),
+              padding:EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text('행사 종료 임박 상품'),
+                  SizedBox(width: 154,),
+                  Icon(CupertinoIcons.right_chevron,size: 18,)
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('반값 세일'),
-              SizedBox(width: 212,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
+          InkWell(
+            onTap: (){
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>halfsale_item_list()));
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(width: 0.5))),
+              padding:EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text('반값 세일'),
+                  SizedBox(width: 212,),
+                  Icon(CupertinoIcons.right_chevron,size: 18,)
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('기간 한정 세일'),
-              SizedBox(width: 183,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
+          InkWell(
+            onTap: (){
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>deadline_sale_item_list()));
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(width: 0.5))),
+              padding:EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text('기간 한정 세일'),
+                  SizedBox(width: 183,),
+                  Icon(CupertinoIcons.right_chevron,size: 18,)
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    ],
+        ],
+      );
+    }
   );
 }
 
 @override
 Widget basic() {
-  return ListView(
-    children: <Widget>[
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('토너/스킨'),
-              SizedBox(width: 210,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
+  return Builder(
+    builder: (context) {
+      return ListView(
+        children: <Widget>[
+          InkWell(
+            onTap: (){
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>toner_item_list()));
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(width: 0.5))),
+              padding:EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text('토너/스킨'),
+                  SizedBox(width: 210,),
+                  Icon(CupertinoIcons.right_chevron,size: 18,)
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('에센스/앰플/세럼/로션/에멀젼'),
-              SizedBox(width: 91,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
+          InkWell(
+            onTap: (){
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>essence_item_list()));
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(width: 0.5))),
+              padding:EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text('에센스/앰플/세럼/로션/에멀젼'),
+                  SizedBox(width: 91,),
+                  Icon(CupertinoIcons.right_chevron,size: 18,)
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('오일/크림류'),
-              SizedBox(width: 198,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
+          InkWell(
+            onTap: (){},
+            child: Container(
+              decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(width: 0.5))),
+              padding:EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text('오일/크림류'),
+                  SizedBox(width: 198,),
+                  Icon(CupertinoIcons.right_chevron,size: 18,)
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    ],
+        ],
+      );
+    }
   );
 }
 

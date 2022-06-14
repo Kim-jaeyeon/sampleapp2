@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-
-class item_list extends StatefulWidget {
-  const item_list({Key? key}) : super(key: key);
+class dailbest_item_list extends StatefulWidget {
+  const dailbest_item_list({Key? key}) : super(key: key);
 
   @override
-  State<item_list> createState() => _item_listState();
+  State<dailbest_item_list> createState() => _dailbest_item_listState();
 }
 
-class _item_listState extends State<item_list> {
+class _dailbest_item_listState extends State<dailbest_item_list> {
   final sortKey = ['가격이 낮은 순', '가격이 높은 순', '오래된 순', '최근 순'];
   var _selected_sort_key = '최근 순';
   var _selected_card_view = false;
@@ -44,7 +43,7 @@ class _item_listState extends State<item_list> {
             Padding(
               padding: EdgeInsets.only(left: 1, bottom: 3),
               child: Text(
-                '연간 베스트 상품',
+                '일간 베스트 상품',
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),
