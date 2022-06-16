@@ -1,14 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class dailbest_item_list extends StatefulWidget {
-  const dailbest_item_list({Key? key}) : super(key: key);
 
+class item_list extends StatefulWidget {
+  late final index;
+  item_list(int _index){
+    this.index=_index;
+  }
   @override
-  State<dailbest_item_list> createState() => _dailbest_item_listState();
+  State<item_list> createState() => item_listState(index);
 }
 
-class _dailbest_item_listState extends State<dailbest_item_list> {
+class item_listState extends State<item_list> {
+  late final index;
+  item_listState(int _index){
+    this.index=_index;
+  }
+
+  final detail_categories = [
+    '연간 베스트 상품',
+    '월간 베스트 상품',
+    '일간 베스트 상품',
+    '행사 종료 임박 상품',
+    '반값 세일',
+    '기간 한정 세일',
+    '토너/스킨',
+    '에센스/앰플/세럼/로션/에멀젼',
+    '오일/크림류',
+    '쿠션',
+    '파운데이션',
+    '파우더',
+    '쉐딩',
+    '블러셔',
+    '페이스',
+    '아이',
+    '립'
+  ];
+
   final sortKey = ['가격이 낮은 순', '가격이 높은 순', '오래된 순', '최근 순'];
   var _selected_sort_key = '최근 순';
   var _selected_card_view = false;
@@ -43,7 +71,7 @@ class _dailbest_item_listState extends State<dailbest_item_list> {
             Padding(
               padding: EdgeInsets.only(left: 1, bottom: 3),
               child: Text(
-                '일간 베스트 상품',
+                detail_categories[index],
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),

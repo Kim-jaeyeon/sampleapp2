@@ -2,16 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sampleapp2/almost_deadline_sale_item_list.dart';
-import 'package:sampleapp2/annualbest_item_list.dart';
-import 'package:sampleapp2/dailybest_item_list.dart';
-import 'package:sampleapp2/deadline_sale_item_list.dart';
-import 'package:sampleapp2/essence_item_list.dart';
-import 'package:sampleapp2/halfsale_item_list.dart';
-import 'package:sampleapp2/monthlybest_item_list.dart';
-import 'package:get/get.dart';
-import 'package:sampleapp2/toner_item_list.dart';
 
+import 'package:sampleapp2/item_list.dart';
 
 class category extends StatefulWidget {
   const category({Key? key}) : super(key: key);
@@ -21,9 +13,9 @@ class category extends StatefulWidget {
 }
 
 class _categoryState extends State<category> {
+  int _index = 0;
+  final categories = [bestItem(), timeSale(), basic(), base(), forcolor()];
 
-  int _index=0;
-  final categories=[bestItem(),timeSale(),basic(),base(),forcolor()];
 
   @override
   Widget build(BuildContext context) {
@@ -75,99 +67,128 @@ class _categoryState extends State<category> {
             children: <Widget>[
               InkWell(
                 onTap: () {
-                  setState((){
-                    _index=0;
+                  setState(() {
+                    _index = 0;
                   });
                 },
                 child: Column(
                   children: <Widget>[
-                    Image.asset('assets/icons/positive-vote.png',width:50,height: 50,color: Colors.purple[200],),
+                    Image.asset(
+                      'assets/icons/positive-vote.png',
+                      width: 50,
+                      height: 50,
+                      color: Colors.purple[200],
+                    ),
                     Text(
                       '베스트 상품',
                       style: TextStyle(fontSize: 15),
                     ),
-                    SizedBox(height: 30,),
+                    SizedBox(
+                      height: 30,
+                    ),
                   ],
                 ),
               ),
               InkWell(
                 onTap: () {
-                  setState((){
-                    _index=1;
+                  setState(() {
+                    _index = 1;
                   });
                 },
                 child: Column(
                   children: <Widget>[
-                    Image.asset('assets/icons/coupon.png',width:50,height: 50,color: Colors.purple[200],),
+                    Image.asset(
+                      'assets/icons/coupon.png',
+                      width: 50,
+                      height: 50,
+                      color: Colors.purple[200],
+                    ),
                     Text(
                       '타임세일',
                       style: TextStyle(fontSize: 15),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
-
               InkWell(
                 onTap: () {
-                  setState((){
-                    _index=2;
+                  setState(() {
+                    _index = 2;
                   });
                 },
                 child: Column(
                   children: <Widget>[
-                    Image.asset('assets/icons/skin.png',width:55,height: 55,color: Colors.purple[200],),
+                    Image.asset(
+                      'assets/icons/skin.png',
+                      width: 55,
+                      height: 55,
+                      color: Colors.purple[200],
+                    ),
                     Text(
                       '기초',
                       style: TextStyle(fontSize: 15),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
               InkWell(
                 onTap: () {
-                  setState((){
-                    _index=3;
+                  setState(() {
+                    _index = 3;
                   });
                 },
                 child: Column(
                   children: <Widget>[
-                    Image.asset('assets/icons/foundation.png',width:55,height: 55,color: Colors.purple[200],),
+                    Image.asset(
+                      'assets/icons/foundation.png',
+                      width: 55,
+                      height: 55,
+                      color: Colors.purple[200],
+                    ),
                     Text('베이스',
                         style: GoogleFonts.sacramento(
                           textStyle: TextStyle(fontSize: 15),
                         )),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
               InkWell(
                 onTap: () {
-                  setState((){
-                    _index=4;
+                  setState(() {
+                    _index = 4;
                   });
                 },
                 child: Column(
                   children: <Widget>[
-                    Image.asset('assets/icons/lipstick.png',width:50,height: 50,color: Colors.purple[200],),
+                    Image.asset(
+                      'assets/icons/lipstick.png',
+                      width: 50,
+                      height: 50,
+                      color: Colors.purple[200],
+                    ),
                     Text(
                       '색조',
                       style: TextStyle(fontSize: 15),
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                   ],
                 ),
               ),
-
             ],
           ),
         ),
-        Container(
-          width: 311.3,
-          height: 500,
-          child: categories[_index]
-        )
+        Container(width: 311.3, height: 500, child: categories[_index])
       ],
     );
   }
@@ -182,185 +203,350 @@ class _categoryState extends State<category> {
       ],
     );
   }
-
 }
+
 @override
 Widget bestItem() {
-  return Builder(
-    builder: (context) {
-      return ListView(
-        children: <Widget>[
-          InkWell(
-            onTap: (){
-              Navigator.push(context, CupertinoPageRoute(builder: (context)=>annualbest_item_list()));
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 0.5))),
-              padding:EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Text('연간 베스트 상품'),
-                  SizedBox(width: 170,),
-                  Icon(CupertinoIcons.right_chevron,size: 18,)
-                ],
-              ),
+  return Builder(builder: (context) {
+    return ListView(
+      children: <Widget>[
+        InkWell(
+          onTap: () {
+            Navigator.push(context,
+                CupertinoPageRoute(builder: (context) => item_list(0)));
+          },
+          child: Container(
+            decoration:
+                BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text('연간 베스트 상품'),
+                SizedBox(
+                  width: 170,
+                ),
+                Icon(
+                  CupertinoIcons.right_chevron,
+                  size: 18,
+                )
+              ],
             ),
           ),
-          InkWell(
-            onTap: (){
-              Navigator.push(context, CupertinoPageRoute(builder: (context)=>monthlybest_item_list()));
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 0.5))),
-              padding:EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Text('월간 베스트 상품'),
-                  SizedBox(width: 170,),
-                  Icon(CupertinoIcons.right_chevron,size: 18,)
-                ],
-              ),
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(context,
+                CupertinoPageRoute(builder: (context) => item_list(1)));
+          },
+          child: Container(
+            decoration:
+                BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text('월간 베스트 상품'),
+                SizedBox(
+                  width: 170,
+                ),
+                Icon(
+                  CupertinoIcons.right_chevron,
+                  size: 18,
+                )
+              ],
             ),
           ),
-          InkWell(
-            onTap: (){
-              Navigator.push(context, CupertinoPageRoute(builder: (context)=>dailbest_item_list()));
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 0.5))),
-              padding:EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Text('일간 베스트 상품'),
-                  SizedBox(width: 170,),
-                  Icon(CupertinoIcons.right_chevron,size: 18,)
-                ],
-              ),
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(2)));
+          },
+          child: Container(
+            decoration:
+                BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text('일간 베스트 상품'),
+                SizedBox(
+                  width: 170,
+                ),
+                Icon(
+                  CupertinoIcons.right_chevron,
+                  size: 18,
+                )
+              ],
             ),
           ),
-        ],
-      );
-    }
-  );
+        ),
+      ],
+    );
+  });
 }
 
 @override
 Widget timeSale() {
-  return Builder(
-    builder: (context) {
-      return ListView(
-        children: <Widget>[
-          InkWell(
-            onTap: (){
-              Navigator.push(context, CupertinoPageRoute(builder: (context)=>almost_deadline_sale_item_list()));
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 0.5))),
-              padding:EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Text('행사 종료 임박 상품'),
-                  SizedBox(width: 154,),
-                  Icon(CupertinoIcons.right_chevron,size: 18,)
-                ],
-              ),
+  return Builder(builder: (context) {
+    return ListView(
+      children: <Widget>[
+        InkWell(
+          onTap: () {
+            Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(3)));
+          },
+          child: Container(
+            decoration:
+                BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text('행사 종료 임박 상품'),
+                SizedBox(
+                  width: 154,
+                ),
+                Icon(
+                  CupertinoIcons.right_chevron,
+                  size: 18,
+                )
+              ],
             ),
           ),
-          InkWell(
-            onTap: (){
-              Navigator.push(context, CupertinoPageRoute(builder: (context)=>halfsale_item_list()));
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 0.5))),
-              padding:EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Text('반값 세일'),
-                  SizedBox(width: 212,),
-                  Icon(CupertinoIcons.right_chevron,size: 18,)
-                ],
-              ),
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(4)));
+          },
+          child: Container(
+            decoration:
+                BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text('반값 세일'),
+                SizedBox(
+                  width: 212,
+                ),
+                Icon(
+                  CupertinoIcons.right_chevron,
+                  size: 18,
+                )
+              ],
             ),
           ),
-          InkWell(
-            onTap: (){
-              Navigator.push(context, CupertinoPageRoute(builder: (context)=>deadline_sale_item_list()));
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 0.5))),
-              padding:EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Text('기간 한정 세일'),
-                  SizedBox(width: 183,),
-                  Icon(CupertinoIcons.right_chevron,size: 18,)
-                ],
-              ),
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(5)));
+          },
+          child: Container(
+            decoration:
+                BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text('기간 한정 세일'),
+                SizedBox(
+                  width: 183,
+                ),
+                Icon(
+                  CupertinoIcons.right_chevron,
+                  size: 18,
+                )
+              ],
             ),
           ),
-        ],
-      );
-    }
-  );
+        ),
+      ],
+    );
+  });
 }
 
 @override
 Widget basic() {
+  return Builder(builder: (context) {
+    return ListView(
+      children: <Widget>[
+        InkWell(
+          onTap: () {
+            Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(6)));
+          },
+          child: Container(
+            decoration:
+                BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text('토너/스킨'),
+                SizedBox(
+                  width: 210,
+                ),
+                Icon(
+                  CupertinoIcons.right_chevron,
+                  size: 18,
+                )
+              ],
+            ),
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(7)));
+          },
+          child: Container(
+            decoration:
+                BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text('에센스/앰플/세럼/로션/에멀젼'),
+                SizedBox(
+                  width: 91,
+                ),
+                Icon(
+                  CupertinoIcons.right_chevron,
+                  size: 18,
+                )
+              ],
+            ),
+          ),
+        ),
+        InkWell(
+          onTap: () {
+            Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(8)));
+          },
+          child: Container(
+            decoration:
+                BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Text('오일/크림류'),
+                SizedBox(
+                  width: 198,
+                ),
+                Icon(
+                  CupertinoIcons.right_chevron,
+                  size: 18,
+                )
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  });
+}
+
+@override
+Widget base() {
   return Builder(
     builder: (context) {
       return ListView(
         children: <Widget>[
           InkWell(
-            onTap: (){
-              Navigator.push(context, CupertinoPageRoute(builder: (context)=>toner_item_list()));
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(9)));
             },
             child: Container(
-              decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 0.5))),
-              padding:EdgeInsets.all(10),
+              decoration:
+                  BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+              padding: EdgeInsets.all(10),
               child: Row(
                 children: [
-                  Text('토너/스킨'),
-                  SizedBox(width: 210,),
-                  Icon(CupertinoIcons.right_chevron,size: 18,)
+                  Text('쿠션'),
+                  SizedBox(
+                    width: 242,
+                  ),
+                  Icon(
+                    CupertinoIcons.right_chevron,
+                    size: 18,
+                  )
                 ],
               ),
             ),
           ),
           InkWell(
-            onTap: (){
-              Navigator.push(context, CupertinoPageRoute(builder: (context)=>essence_item_list()));
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(10)));
             },
             child: Container(
-              decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 0.5))),
-              padding:EdgeInsets.all(10),
+              decoration:
+                  BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+              padding: EdgeInsets.all(10),
               child: Row(
                 children: [
-                  Text('에센스/앰플/세럼/로션/에멀젼'),
-                  SizedBox(width: 91,),
-                  Icon(CupertinoIcons.right_chevron,size: 18,)
+                  Text('파운데이션'),
+                  SizedBox(
+                    width: 203,
+                  ),
+                  Icon(
+                    CupertinoIcons.right_chevron,
+                    size: 18,
+                  )
                 ],
               ),
             ),
           ),
           InkWell(
-            onTap: (){},
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(11)));
+            },
             child: Container(
-              decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 0.5))),
-              padding:EdgeInsets.all(10),
+              decoration:
+                  BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+              padding: EdgeInsets.all(10),
               child: Row(
                 children: [
-                  Text('오일/크림류'),
-                  SizedBox(width: 198,),
-                  Icon(CupertinoIcons.right_chevron,size: 18,)
+                  Text('파우더'),
+                  SizedBox(
+                    width: 229,
+                  ),
+                  Icon(
+                    CupertinoIcons.right_chevron,
+                    size: 18,
+                  )
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(12)));
+            },
+            child: Container(
+              decoration:
+                  BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+              padding: EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text('쉐딩'),
+                  SizedBox(
+                    width: 242,
+                  ),
+                  Icon(
+                    CupertinoIcons.right_chevron,
+                    size: 18,
+                  )
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(13)));
+            },
+            child: Container(
+              decoration:
+                  BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+              padding: EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text('블러셔'),
+                  SizedBox(
+                    width: 228,
+                  ),
+                  Icon(
+                    CupertinoIcons.right_chevron,
+                    size: 18,
+                  )
                 ],
               ),
             ),
@@ -368,142 +554,81 @@ Widget basic() {
         ],
       );
     }
-  );
-}
-
-@override
-Widget base() {
-  return ListView(
-    children: <Widget>[
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('쿠션'),
-              SizedBox(width: 242,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
-          ),
-        ),
-      ),
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('파운데이션'),
-              SizedBox(width: 203,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
-          ),
-        ),
-      ),
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('파우더'),
-              SizedBox(width: 229,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
-          ),
-        ),
-      ),
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('쉐딩'),
-              SizedBox(width: 242,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
-          ),
-        ),
-      ),
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('블러셔'),
-              SizedBox(width: 228,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
-          ),
-        ),
-      ),
-    ],
   );
 }
 
 @override
 Widget forcolor() {
-  return ListView(
-    children: <Widget>[
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('얼굴'),
-              SizedBox(width: 242,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
+  return Builder(
+    builder: (context) {
+      return ListView(
+        children: <Widget>[
+          InkWell(
+            onTap: () {Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(14)));},
+            child: Container(
+              decoration:
+                  BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+              padding: EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text('페이스'),
+                  SizedBox(
+                    width: 229,
+                  ),
+                  Icon(
+                    CupertinoIcons.right_chevron,
+                    size: 18,
+                  )
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('눈'),
-              SizedBox(width: 255,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
+          InkWell(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(15)));
+            },
+            child: Container(
+              decoration:
+                  BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+              padding: EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text('아이'),
+                  SizedBox(
+                    width: 242,
+                  ),
+                  Icon(
+                    CupertinoIcons.right_chevron,
+                    size: 18,
+                  )
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-      InkWell(
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5))),
-          padding:EdgeInsets.all(10),
-          child: Row(
-            children: [
-              Text('입'),
-              SizedBox(width: 255,),
-              Icon(CupertinoIcons.right_chevron,size: 18,)
-            ],
+          InkWell(
+            onTap: () {
+              Navigator.push(context, CupertinoPageRoute(builder: (context)=>item_list(16)));
+            },
+            child: Container(
+              decoration:
+                  BoxDecoration(border: Border(bottom: BorderSide(width: 0.5))),
+              padding: EdgeInsets.all(10),
+              child: Row(
+                children: [
+                  Text('립'),
+                  SizedBox(
+                    width: 255,
+                  ),
+                  Icon(
+                    CupertinoIcons.right_chevron,
+                    size: 18,
+                  )
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    ],
+        ],
+      );
+    }
   );
 }
-
