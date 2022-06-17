@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sampleapp2/orderedlist.dart';
 import 'package:sampleapp2/personal_info.dart';
+import 'package:sampleapp2/qna.dart';
 import 'package:sampleapp2/wishlist.dart';
 import 'package:sampleapp2/information/Person.dart';
 import 'package:get/get.dart';
@@ -267,7 +268,9 @@ class _myPageState extends State<myPage> {
               )),
         ),
         InkWell(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(context, CupertinoPageRoute(builder: (context)=>qna()));
+          },
           child: Container(
               decoration: BoxDecoration(
                 border: Border(bottom: BorderSide(width: 0.5)),

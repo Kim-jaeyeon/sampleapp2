@@ -12,11 +12,11 @@ class cameraPage extends StatefulWidget {
 }
 
 class _cameraPageState extends State<cameraPage> {
-  File _image=File('/document/image:19');
+  File _image=File('assets/me.png');
 
   @override
   void initState(){
-    getImage(ImageSource.gallery);
+    getImage(ImageSource.camera);
     super.initState();
   }
 
@@ -38,19 +38,21 @@ class _cameraPageState extends State<cameraPage> {
 
   Widget showImg(){
     if(_image==null){
+      print('null!!!!!!!!!!');
       return Container();
     }
     else{
+      print('yeaH!!!!!!!!!${_image.toString()}');
       return Image.file(_image,width: 200,height: 200,);
     }
   }
 
   Future getImage(ImageSource imageSource)async{
     var image=await ImagePicker.platform.pickImage(source: imageSource);
-
     setState((){
-      _image=image as File;
+      _image=File(image!.path);
     });
+    print('!!!!!!!!!!!!!!!!!${_image.toString()}');
   }
 
 
